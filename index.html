@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Don Marco — Пиццерия с характером</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">Don Marco</div>
+    <nav class="nav">
+      <a href="#menu">Меню</a>
+      <a href="#delivery">Доставка</a>
+      <a href="#reservation">Бронь</a>
+      <a href="#about">О нас</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Пицца. Вкус. Контроль.</p>
+        <h1>Don Marco — маленький гангстер, который решает вопросы со вкусом.</h1>
+        <p class="lede">У нас всё под контролем: дровяная печь, секретные рецепты и доставка, которая приезжает вовремя. Садитесь за стол — мы накроем.</p>
+        <div class="cta">
+          <a class="button" href="#menu">Смотреть меню</a>
+          <a class="button button--ghost" href="#delivery">Заказать доставку</a>
+        </div>
+      </div>
+      <div class="hero__badge">
+        <div class="badge__avatar" aria-hidden="true">🍕</div>
+        <div class="badge__text">
+          <p>"Если пицца — это сделка, то она всегда в нашу пользу."</p>
+          <span>— Дон Марко</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="panel">
+      <div class="panel__header">
+        <p class="eyebrow">Меню</p>
+        <h2>Выбор, который держит слово</h2>
+        <p class="lede">Пицца на тонком тесте, паста аль денте, салаты, закуски и напитки. Состав выверен — Дон следит лично.</p>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <h3>Пицца</h3>
+          <ul>
+            <li><strong>Маргарита</strong> — томаты сан-марциано, моцарелла, базилик</li>
+            <li><strong>Пепперони</strong> — двойная порция пепперони, сыр, фирменный соус</li>
+            <li><strong>Трюфельная</strong> — грибы, трюфельное масло, пармезан</li>
+            <li><strong>Диавола</strong> — салями, перчик чили, копчёный сыр</li>
+          </ul>
+        </div>
+        <div class="menu-card">
+          <h3>Паста</h3>
+          <ul>
+            <li><strong>Карбонара</strong> — панчетта, соус на желтках, пекорино</li>
+            <li><strong>Болоньезе</strong> — долгий соус с говядиной и томатами</li>
+            <li><strong>Альфредо</strong> — сливочный соус, курица, грибы</li>
+            <li><strong>Арабьята</strong> — томаты, чеснок, острый перец</li>
+          </ul>
+        </div>
+        <div class="menu-card">
+          <h3>Салаты</h3>
+          <ul>
+            <li><strong>Цезарь</strong> — романо, цыплёнок, чесночные крутоны</li>
+            <li><strong>Капрезе</strong> — моцарелла, томаты, песто</li>
+            <li><strong>Греческий</strong> — фета, оливки, сочные овощи</li>
+          </ul>
+        </div>
+        <div class="menu-card">
+          <h3>Закуски</h3>
+          <ul>
+            <li><strong>Брускетта</strong> — томаты, базилик, оливковое масло</li>
+            <li><strong>Острые крылья</strong> — фирменный острый соус</li>
+            <li><strong>Сырные палочки</strong> — моцарелла с соусом маринара</li>
+          </ul>
+        </div>
+        <div class="menu-card">
+          <h3>Напитки</h3>
+          <ul>
+            <li><strong>Домашний лимонад</strong> — цитрус или ягоды</li>
+            <li><strong>Эспрессо</strong> — смесь обжарки Дона</li>
+            <li><strong>Классическая сангрия</strong></li>
+            <li><strong>Безалкогольное пиво</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="delivery" class="panel split">
+      <div>
+        <p class="eyebrow">Доставка</p>
+        <h2>Дон присматривает за каждой коробкой</h2>
+        <p class="lede">Оставьте адрес и время — курьеры доставят горячую пиццу без промедления.</p>
+        <ul class="details">
+          <li>Работаем с 11:00 до 23:00</li>
+          <li>Среднее время доставки: 35 минут</li>
+          <li>Оплата картой или наличными</li>
+        </ul>
+      </div>
+      <form class="form" aria-labelledby="delivery-title">
+        <h3 id="delivery-title">Оформить доставку</h3>
+        <label>
+          Имя
+          <input type="text" name="name" placeholder="Как к вам обращаться" required>
+        </label>
+        <label>
+          Телефон
+          <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+        </label>
+        <label>
+          Адрес доставки
+          <input type="text" name="address" placeholder="Улица, дом, подъезд" required>
+        </label>
+        <label>
+          Время
+          <input type="time" name="time">
+        </label>
+        <label>
+          Комментарий
+          <textarea name="comment" rows="3" placeholder="Например: без лука, позвонить за 5 минут"></textarea>
+        </label>
+        <button type="submit" class="button">Оставить заявку</button>
+      </form>
+    </section>
+
+    <section id="reservation" class="panel split">
+      <div>
+        <p class="eyebrow">Бронь</p>
+        <h2>Столик под охраной</h2>
+        <p class="lede">Дон любит порядок: зарезервируем место, пока вы в пути.</p>
+        <ul class="details">
+          <li>Зал на 50 гостей, есть детская зона</li>
+          <li>VIP-комната «Сицилия» для закрытых встреч</li>
+          <li>Парковка и Wi‑Fi — бесплатно</li>
+        </ul>
+      </div>
+      <form class="form" aria-labelledby="reservation-title">
+        <h3 id="reservation-title">Забронировать стол</h3>
+        <label>
+          Имя
+          <input type="text" name="guest" placeholder="Ваше имя" required>
+        </label>
+        <label>
+          Телефон
+          <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+        </label>
+        <label>
+          Дата и время
+          <input type="datetime-local" name="datetime" required>
+        </label>
+        <label>
+          Гостей
+          <input type="number" name="people" min="1" max="20" value="2" required>
+        </label>
+        <label>
+          Пожелания
+          <textarea name="notes" rows="3" placeholder="Например: стол у окна"></textarea>
+        </label>
+        <button type="submit" class="button">Забронировать</button>
+      </form>
+    </section>
+
+    <section id="about" class="panel">
+      <div class="panel__header">
+        <p class="eyebrow">О Дон Марко</p>
+        <h2>Маленький гангстер, большой вкус</h2>
+        <p class="lede">Легенда говорит, что Дон Марко держит рецепты под охраной. Мы просто делаем пиццу, которая собирает друзей.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Печь под надзором</h3>
+          <p>Тонкое тесто, ферментация 48 часов и живой огонь. За корочку отвечает Дон — без компромиссов.</p>
+        </div>
+        <div class="about-card">
+          <h3>Семейные рецепты</h3>
+          <p>Соусы готовим ежедневно, используем моцареллу fior di latte и свежий базилик.</p>
+        </div>
+        <div class="about-card">
+          <h3>Команда в деле</h3>
+          <p>Курьеры и официанты проходят «кодекс Дона»: уважение к гостям и пунктуальность.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts" class="panel contacts">
+      <div>
+        <p class="eyebrow">Контакты</p>
+        <h2>Связаться с Доном</h2>
+        <p class="lede">Мы на связи в любое время работы. Хотите что-то особенное — скажите, и мы решим.</p>
+        <ul class="details">
+          <li><strong>Телефон:</strong> <a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+          <li><strong>Адрес:</strong> Москва, ул. Траттория, 5</li>
+          <li><strong>Часы:</strong> ежедневно с 11:00 до 23:00</li>
+          <li><strong>Соцсети:</strong> @donmarco.pizza</li>
+        </ul>
+      </div>
+      <div class="map-card" aria-label="Карта и быстрые ссылки">
+        <div class="map-illustration" aria-hidden="true">🕶️🍕</div>
+        <p>Мы в центре — 5 минут от метро «Вкусная». Парковка со двора.</p>
+        <div class="cta">
+          <a class="button" href="tel:+74951234567">Позвонить</a>
+          <a class="button button--ghost" href="mailto:ciao@donmarco.ru">Написать</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© Don Marco, 2024. Все вопросы решаем со вкусом.</p>
+    <p class="footer__note">Сайт в стилистике маленького гангстера: харизма, аккуратность и уважение к гостям.</p>
+  </footer>
+</body>
+</html>
