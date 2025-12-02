@@ -1,841 +1,862 @@
-diff --git a/index.html b/index.html
-new file mode 100644
-index 0000000000000000000000000000000000000000..493a79e68687e44c62598437a3ab9192b38a675a
---- /dev/null
-+++ b/index.html
-@@ -0,0 +1,835 @@
-+<!doctype html>
-+<html lang="en">
-+<head>
-+  <meta charset="UTF-8">
-+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-+  <title>DON MARKO PIZZA & PASTA</title>
-+  <style>
-+    :root {
-+      --dark: #171A1C;
-+      --red: #C7362C;
-+      --cream: #F4E3C3;
-+      --olive: #7B8C3A;
-+      --text: #1f2428;
-+      --muted: #57606a;
-+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-+      --radius: 16px;
-+    }
-+
-+    * { box-sizing: border-box; }
-+    body {
-+      margin: 0;
-+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-+      color: var(--text);
-+      background: #f7f1e6;
-+      line-height: 1.6;
-+      scroll-behavior: smooth;
-+    }
-+
-+    a { color: inherit; text-decoration: none; }
-+    img { max-width: 100%; display: block; }
-+
-+    .container {
-+      width: min(1200px, 92vw);
-+      margin: 0 auto;
-+    }
-+
-+    header {
-+      position: sticky;
-+      top: 0;
-+      z-index: 50;
-+      background: var(--dark);
-+      color: #fff;
-+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-+    }
-+
-+    .nav-bar {
-+      display: flex;
-+      align-items: center;
-+      justify-content: space-between;
-+      padding: 14px 0;
-+      gap: 16px;
-+    }
-+
-+    .logo {
-+      display: flex;
-+      align-items: center;
-+      gap: 12px;
-+      font-weight: 800;
-+      letter-spacing: 0.04em;
-+    }
-+
-+    .logo-mark {
-+      width: 46px;
-+      height: 46px;
-+      border-radius: 14px;
-+      background: var(--red);
-+      display: grid;
-+      place-items: center;
-+      color: #fff;
-+      font-size: 18px;
-+      font-weight: 700;
-+      box-shadow: 0 6px 12px rgba(199, 54, 44, 0.4);
-+    }
-+
-+    .logo-text span { display: block; }
-+    .logo-text .brand { font-size: 18px; }
-+    .logo-text .subtitle { font-size: 12px; color: #d5d8da; letter-spacing: 0.08em; }
-+
-+    nav ul {
-+      list-style: none;
-+      display: flex;
-+      align-items: center;
-+      gap: 14px;
-+      margin: 0;
-+      padding: 0;
-+    }
-+
-+    nav a {
-+      padding: 10px 14px;
-+      border-radius: 12px;
-+      font-weight: 600;
-+      font-size: 14px;
-+      transition: background 0.2s, color 0.2s, transform 0.2s;
-+    }
-+
-+    nav a:hover { background: rgba(244, 227, 195, 0.1); transform: translateY(-1px); }
-+
-+    .burger {
-+      display: none;
-+      flex-direction: column;
-+      gap: 5px;
-+      width: 42px;
-+      height: 42px;
-+      align-items: center;
-+      justify-content: center;
-+      border-radius: 12px;
-+      border: 1px solid rgba(255,255,255,0.15);
-+      background: rgba(255,255,255,0.05);
-+    }
-+
-+    .burger span {
-+      display: block;
-+      width: 20px;
-+      height: 2px;
-+      background: #fff;
-+    }
-+
-+    .mobile-menu {
-+      display: none;
-+      flex-direction: column;
-+      gap: 8px;
-+      padding: 12px 0 16px;
-+      border-top: 1px solid rgba(255,255,255,0.08);
-+    }
-+
-+    .hero {
-+      background: linear-gradient(135deg, var(--dark) 40%, #21262a 100%);
-+      color: #fff;
-+      padding: 96px 0 72px;
-+    }
-+
-+    .hero-grid {
-+      display: grid;
-+      gap: 28px;
-+      align-items: center;
-+    }
-+
-+    .eyebrow {
-+      text-transform: uppercase;
-+      letter-spacing: 0.12em;
-+      font-weight: 700;
-+      font-size: 12px;
-+      color: #f5d7a1;
-+      margin-bottom: 10px;
-+    }
-+
-+    h1 { font-size: clamp(28px, 6vw, 44px); margin: 0 0 12px; }
-+    h2 { font-size: clamp(24px, 5vw, 34px); margin: 0 0 12px; color: var(--dark); }
-+    h3 { margin: 0 0 8px; font-size: 20px; }
-+
-+    .hero p { margin: 0 0 18px; color: #e9edf0; }
-+
-+    .cta-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
-+
-+    .btn {
-+      display: inline-flex;
-+      align-items: center;
-+      justify-content: center;
-+      gap: 8px;
-+      padding: 12px 18px;
-+      border-radius: 999px;
-+      font-weight: 700;
-+      border: none;
-+      cursor: pointer;
-+      font-size: 15px;
-+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
-+    }
-+
-+    .btn-primary { background: var(--red); color: #fff; box-shadow: 0 10px 18px rgba(199, 54, 44, 0.3); }
-+    .btn-primary:hover { transform: translateY(-1px); }
-+    .btn-ghost { background: rgba(244, 227, 195, 0.12); color: #fff; border: 1px solid rgba(255,255,255,0.25); }
-+    .btn-ghost:hover { background: rgba(244, 227, 195, 0.2); }
-+
-+    .hero-visual {
-+      background: #f4e3c3;
-+      color: var(--dark);
-+      border-radius: 18px;
-+      padding: 32px;
-+      min-height: 220px;
-+      display: grid;
-+      place-items: center;
-+      text-align: center;
-+      font-weight: 700;
-+      box-shadow: var(--shadow);
-+      border: 2px dashed #d9c29f;
-+    }
-+
-+    .section {
-+      padding: 72px 0;
-+    }
-+
-+    .card-grid {
-+      display: grid;
-+      gap: 18px;
-+    }
-+
-+    .card {
-+      background: var(--cream);
-+      border-radius: var(--radius);
-+      padding: 20px;
-+      box-shadow: var(--shadow);
-+      border: 1px solid rgba(23, 26, 28, 0.06);
-+    }
-+
-+    .quote-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-+    .badge {
-+      background: #fff;
-+      color: var(--dark);
-+      padding: 10px 12px;
-+      border-radius: 12px;
-+      border: 1px solid rgba(23, 26, 28, 0.08);
-+      font-weight: 600;
-+      font-size: 13px;
-+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-+    }
-+
-+    .section-title { text-align: center; margin-bottom: 36px; }
-+    .section-title p { margin: 0 auto; max-width: 640px; color: var(--muted); }
-+
-+    .laws {
-+      background: var(--dark);
-+      color: #f6f7f8;
-+      padding: 28px;
-+      border-radius: 20px;
-+      box-shadow: var(--shadow);
-+    }
-+
-+    .laws ol { margin: 0; padding-left: 22px; display: grid; gap: 12px; }
-+    .laws small { color: #dce0e2; display: block; margin-top: 12px; }
-+
-+    .tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 18px; flex-wrap: wrap; }
-+
-+    .tab {
-+      padding: 10px 16px;
-+      border-radius: 12px;
-+      border: 1px solid rgba(23,26,28,0.12);
-+      background: #fff7eb;
-+      color: var(--dark);
-+      font-weight: 700;
-+      cursor: pointer;
-+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-+    }
-+
-+    .tab.active {
-+      background: var(--red);
-+      color: #fff;
-+      box-shadow: 0 12px 20px rgba(199, 54, 44, 0.32);
-+      transform: translateY(-1px);
-+    }
-+
-+    .menu-grid {
-+      display: grid;
-+      gap: 16px;
-+    }
-+
-+    .menu-item {
-+      background: #fff;
-+      border-radius: 14px;
-+      padding: 16px;
-+      border: 1px solid rgba(23,26,28,0.08);
-+      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-+      display: grid;
-+      gap: 8px;
-+    }
-+
-+    .menu-meta { display: flex; gap: 10px; flex-wrap: wrap; }
-+    .pill {
-+      padding: 6px 10px;
-+      border-radius: 999px;
-+      font-size: 12px;
-+      font-weight: 700;
-+      background: rgba(123, 140, 58, 0.15);
-+      color: var(--olive);
-+    }
-+    .pill.spicy { background: rgba(199, 54, 44, 0.16); color: var(--red); }
-+    .pill.star { background: rgba(255, 200, 87, 0.22); color: #b36b00; }
-+    .pill.premium { background: rgba(109, 90, 237, 0.18); color: #5145cd; }
-+
-+    .price-row {
-+      display: flex;
-+      align-items: center;
-+      justify-content: space-between;
-+      gap: 12px;
-+    }
-+
-+    .add-btn {
-+      background: var(--dark);
-+      color: #fff;
-+      border: none;
-+      padding: 10px 14px;
-+      border-radius: 12px;
-+      font-weight: 700;
-+      cursor: pointer;
-+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-+    }
-+
-+    .add-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 16px rgba(23, 26, 28, 0.2); }
-+
-+    .split {
-+      display: grid;
-+      gap: 22px;
-+    }
-+
-+    .list-check { padding-left: 18px; color: var(--muted); }
-+    .list-check li { margin-bottom: 8px; }
-+
-+    .order-card {
-+      background: #fff;
-+      border-radius: var(--radius);
-+      padding: 20px;
-+      box-shadow: var(--shadow);
-+      border: 1px solid rgba(23,26,28,0.08);
-+      display: grid;
-+      gap: 12px;
-+    }
-+
-+    .cart-items { display: grid; gap: 10px; }
-+    .cart-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
-+    .qty-controls { display: inline-flex; align-items: center; gap: 8px; }
-+    .qty-btn {
-+      width: 30px;
-+      height: 30px;
-+      border-radius: 10px;
-+      border: 1px solid rgba(23,26,28,0.12);
-+      background: #f2e5cc;
-+      font-weight: 800;
-+      cursor: pointer;
-+    }
-+
-+    .form-grid { display: grid; gap: 10px; }
-+    label { display: grid; gap: 6px; font-weight: 600; color: var(--dark); }
-+    input, textarea {
-+      padding: 12px;
-+      border-radius: 12px;
-+      border: 1px solid rgba(23,26,28,0.14);
-+      font-size: 14px;
-+      background: #fff;
-+      font-family: inherit;
-+    }
-+    textarea { resize: vertical; }
-+
-+    .total-row { display: flex; align-items: center; justify-content: space-between; font-weight: 800; }
-+
-+    .testimonials {
-+      display: grid;
-+      gap: 14px;
-+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-+    }
-+
-+    .contact-card { background: #fff; border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); border: 1px solid rgba(23,26,28,0.08); display: grid; gap: 12px; }
-+    .info-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; color: var(--muted); }
-+
-+    footer {
-+      background: var(--dark);
-+      color: #e6eaed;
-+      padding: 24px 0;
-+      text-align: center;
-+      font-size: 14px;
-+    }
-+
-+    .socials { display: flex; justify-content: center; gap: 12px; margin-top: 8px; }
-+    .socials a { color: #e6eaed; font-weight: 700; }
-+
-+    @media (min-width: 720px) {
-+      .nav-bar { padding: 16px 0; }
-+      .hero-grid { grid-template-columns: 1.2fr 0.9fr; }
-+      .card-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-+      .menu-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-+      .split { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
-+      nav a { font-size: 15px; }
-+      .mobile-menu { display: none !important; }
-+      .burger { display: none; }
-+    }
-+
-+    @media (max-width: 719px) {
-+      nav ul { display: none; }
-+      .burger { display: flex; }
-+      .mobile-menu.show { display: flex; }
-+      header { backdrop-filter: blur(6px); }
-+      .hero { padding: 84px 0 64px; }
-+      .section { padding: 64px 0; }
-+      .price-row { align-items: start; }
-+    }
-+  </style>
-+</head>
-+<body>
-+  <header>
-+    <div class="container nav-bar">
-+      <div class="logo" aria-label="Don Marko logo">
-+        <div class="logo-mark" aria-hidden="true">🍕</div>
-+        <div class="logo-text">
-+          <span class="brand">DON MARKO</span>
-+          <span class="subtitle">PIZZA &amp; PASTA</span>
-+        </div>
-+      </div>
-+      <nav>
-+        <ul>
-+          <li><a href="#home">Home</a></li>
-+          <li><a href="#menu">Menu</a></li>
-+          <li><a href="#code">The Don’s Code</a></li>
-+          <li><a href="#delivery">Delivery</a></li>
-+          <li><a href="#contact">Contact</a></li>
-+        </ul>
-+        <button class="burger" aria-label="Toggle navigation">
-+          <span></span><span></span><span></span>
-+        </button>
-+        <div class="mobile-menu" aria-label="Mobile navigation">
-+          <a href="#home">Home</a>
-+          <a href="#menu">Menu</a>
-+          <a href="#code">The Don’s Code</a>
-+          <a href="#delivery">Delivery</a>
-+          <a href="#contact">Contact</a>
-+        </div>
-+      </nav>
-+    </div>
-+  </header>
-+
-+  <main id="home">
-+    <section class="hero">
-+      <div class="container hero-grid">
-+        <div>
-+          <p class="eyebrow">Small Don. Big Flavor.</p>
-+          <h1>DON MARKO PIZZA &amp; PASTA</h1>
-+          <p>Hungry? The Don will take care of it. Authentic pizza &amp; pasta with a playful mafia twist.</p>
-+          <div class="cta-buttons">
-+            <a class="btn btn-primary" href="#delivery">Order Delivery</a>
-+            <a class="btn btn-ghost" href="#menu">View Menu</a>
-+          </div>
-+        </div>
-+        <div class="hero-visual" aria-label="Illustration placeholder">
-+          Illustration of Don Marko goes here. Small boss, big flavor energy.
-+        </div>
-+      </div>
-+    </section>
-+
-+    <section class="section" id="meet">
-+      <div class="container card-grid">
-+        <div class="card">
-+          <div class="eyebrow">Meet the Don</div>
-+          <h2>Don Marko is the boss of flavor</h2>
-+          <p>Don Marko is the boss of flavor. He “takes care of” dough, cheese and sauce: everything is under his control, no compromises on quality. He may be small, but when it comes to pizza and pasta, he makes all the big decisions.</p>
-+          <p>He runs the kitchen like family business: respectful, sharp, and always on time. Sit down, relax, and let the Don handle your hunger.</p>
-+          <div class="quote-badges">
-+            <span class="badge">“I already handled the dough. Don’t make me handle you.”</span>
-+            <span class="badge">“I knead dough… and I can knead you too.”</span>
-+            <span class="badge">“No drama at the table. I only like spicy on my pizza.”</span>
-+          </div>
-+        </div>
-+      </div>
-+    </section>
-+
-+    <section class="section" id="code">
-+      <div class="container">
-+        <div class="section-title">
-+          <p class="eyebrow">The Don’s Code</p>
-+          <h2>The Don’s Laws of Flavor</h2>
-+          <p>These are the rules of Don Marko’s family. Break them at your own risk (or just order another pizza).</p>
-+        </div>
-+        <div class="laws">
-+          <ol>
-+            <li>In this house, we count slices, not calories.</li>
-+            <li>If it’s not good enough for the Don, it’s not leaving the kitchen.</li>
-+            <li>No shortcuts. Long dough, long respect.</li>
-+            <li>Bad mood? Add another slice.</li>
-+            <li>You’re under my protection. No one touches your pizza.</li>
-+            <li>We don’t negotiate with fake cheese.</li>
-+            <li>Wash your hands. The Don is watching.</li>
-+            <li>Loyalty is measured in empty plates.</li>
-+          </ol>
-+          <small>Obey the code and the Don will make sure your plate stays full.</small>
-+        </div>
-+      </div>
-+    </section>
-+
-+    <section class="section" id="menu">
-+      <div class="container">
-+        <div class="section-title">
-+          <p class="eyebrow">Menu</p>
-+          <h2>Choose your side: Pizza or Pasta</h2>
-+          <p>Hand-tossed pies, slow-simmered sauces, and playful names. The Don signs off every bite.</p>
-+        </div>
-+        <div class="tabs" role="tablist">
-+          <button class="tab active" data-tab="pizza" aria-selected="true">Pizza</button>
-+          <button class="tab" data-tab="pasta" aria-selected="false">Pasta</button>
-+        </div>
-+        <div class="menu-grid" id="pizza" role="tabpanel">
-+          <div class="menu-item" data-name="Capo Margherita" data-price="11">
-+            <h3>Capo Margherita</h3>
-+            <p>Classic margherita with San Marzano tomatoes, fresh mozzarella &amp; basil.</p>
-+            <div class="menu-meta">
-+              <span class="pill star">bestseller</span>
-+            </div>
-+            <div class="price-row">
-+              <strong>$11</strong>
-+              <button class="add-btn">Add to Order</button>
-+            </div>
-+          </div>
-+          <div class="menu-item" data-name="Undercover Pepperoni" data-price="13">
-+            <h3>Undercover Pepperoni</h3>
-+            <p>Double pepperoni, mozzarella, secret Don’s sauce.</p>
-+            <div class="menu-meta">
-+              <span class="pill spicy">spicy</span>
-+            </div>
-+            <div class="price-row">
-+              <strong>$13</strong>
-+              <button class="add-btn">Add to Order</button>
-+            </div>
-+          </div>
-+          <div class="menu-item" data-name="Witness Protection White Pizza" data-price="12">
-+            <h3>Witness Protection White Pizza</h3>
-+            <p>Creamy ricotta, mozzarella, garlic, mushrooms.</p>
-+            <div class="menu-meta">
-+              <span class="pill">vegetarian</span>
-+            </div>
-+            <div class="price-row">
-+              <strong>$12</strong>
-+              <button class="add-btn">Add to Order</button>
-+            </div>
-+          </div>
-+          <div class="menu-item" data-name="Tiny Don Special" data-price="14">
-+            <h3>Tiny Don Special</h3>
-+            <p>Mix of premium toppings chosen by the Don (pepperoni, sausage, peppers, onions).</p>
-+            <div class="menu-meta"></div>
-+            <div class="price-row">
-+              <strong>$14</strong>
-+              <button class="add-btn">Add to Order</button>
-+            </div>
-+          </div>
-+          <div class="menu-item" data-name="Family Loyalty Four Cheese" data-price="13">
-+            <h3>Family Loyalty Four Cheese</h3>
-+            <p>Mozzarella, gorgonzola, parmesan, provolone.</p>
-+            <div class="menu-meta"></div>
-+            <div class="price-row">
-+              <strong>$13</strong>
-+              <button class="add-btn">Add to Order</button>
-+            </div>
-+          </div>
-+          <div class="menu-item" data-name="Midnight Meeting Diavola" data-price="15">
-+            <h3>Midnight Meeting Diavola</h3>
-+            <p>Spicy salami, chili flakes, jalapeños.</p>
-+            <div class="menu-meta">
-+              <span class="pill spicy">extra spicy</span>
-+            </div>
-+            <div class="price-row">
-+              <strong>$15</strong>
-+              <button class="add-btn">Add to Order</button>
-+            </div>
-+          </div>
-+        </div>
-+        <div class="menu-grid" id="pasta" role="tabpanel" hidden>
-+          <div class="menu-item" data-name="Spaghetti alla Tommy Gun" data-price="12">
-+            <h3>Spaghetti alla Tommy Gun</h3>
-+            <p>Spaghetti with rich tomato sauce &amp; meatballs.</p>
-+            <div class="menu-meta"></div>
-+            <div class="price-row">
-+              <strong>$12</strong>
-+              <button class="add-btn">Add to Order</button>
-+            </div>
-+          </div>
-+          <div class="menu-item" data-name="Boss’ Favorite Carbonara" data-price="13">
-+            <h3>Boss’ Favorite Carbonara</h3>
-+            <p>Creamy sauce, pancetta, egg, pecorino.</p>
-+            <div class="menu-meta"></div>
-+            <div class="price-row">
-+              <strong>$13</strong>
-+              <button class="add-btn">Add to Order</button>
-+            </div>
-+          </div>
-+          <div class="menu-item" data-name="Truffle Peace Agreement" data-price="16">
-+            <h3>Truffle Peace Agreement</h3>
-+            <p>Fettuccine with truffle cream sauce.</p>
-+            <div class="menu-meta">
-+              <span class="pill premium">premium</span>
-+            </div>
-+            <div class="price-row">
-+              <strong>$16</strong>
-+              <button class="add-btn">Add to Order</button>
-+            </div>
-+          </div>
-+          <div class="menu-item" data-name="Green Capo Pesto" data-price="12">
-+            <h3>Green Capo Pesto</h3>
-+            <p>Basil pesto, cherry tomatoes, parmesan.</p>
-+            <div class="menu-meta">
-+              <span class="pill">vegetarian</span>
-+            </div>
-+            <div class="price-row">
-+              <strong>$12</strong>
-+              <button class="add-btn">Add to Order</button>
-+            </div>
-+          </div>
-+        </div>
-+      </div>
-+    </section>
-+
-+    <section class="section" id="delivery">
-+      <div class="container split">
-+        <div>
-+          <p class="eyebrow">Delivery</p>
-+          <h2>Delivery under Don’s protection</h2>
-+          <p>Order your pizza &amp; pasta straight from Don Marko’s kitchen. We deliver fast, hot, and with respect for your hunger.</p>
-+          <ul class="list-check">
-+            <li>Fresh dough, real cheese, honest ingredients.</li>
-+            <li>No frozen nonsense. Not in this family.</li>
-+            <li>Friendly couriers, no drama.</li>
-+          </ul>
-+        </div>
-+        <div class="order-card">
-+          <h3>Your Order</h3>
-+          <div class="cart-items" id="cart"></div>
-+          <p id="empty-cart">No items yet. Add something the Don approves.</p>
-+          <div class="total-row">
-+            <span>Total</span>
-+            <span id="total">$0</span>
-+          </div>
-+          <form class="form-grid" id="order-form">
-+            <label>Name
-+              <input type="text" id="order-name" placeholder="Your name">
-+            </label>
-+            <label>Phone
-+              <input type="tel" id="order-phone" placeholder="+1 (___) ___-____">
-+            </label>
-+            <label>Address
-+              <input type="text" id="order-address" placeholder="Street, building, apartment">
-+            </label>
-+            <label>Delivery notes
-+              <textarea id="order-notes" rows="3" placeholder="Gate code or sauce preference"></textarea>
-+            </label>
-+            <button type="submit" class="btn btn-primary">Place Order</button>
-+          </form>
-+        </div>
-+      </div>
-+    </section>
-+
-+    <section class="section" id="reviews">
-+      <div class="container">
-+        <div class="section-title">
-+          <p class="eyebrow">What the family says</p>
-+          <h2>Voices from Don Marko’s table</h2>
-+        </div>
-+        <div class="testimonials">
-+          <div class="card">
-+            <p>“Best crust in town. I’m afraid to order pizza anywhere else now.”</p>
-+            <strong>— Tony</strong>
-+          </div>
-+          <div class="card">
-+            <p>“My kids love the tiny Don character. We come every Friday.”</p>
-+            <strong>— Maria</strong>
-+          </div>
-+          <div class="card">
-+            <p>“Serious flavor, fun atmosphere. The Don knows what he’s doing.”</p>
-+            <strong>— Alex</strong>
-+          </div>
-+        </div>
-+      </div>
-+    </section>
-+
-+    <section class="section" id="contact">
-+      <div class="container split">
-+        <div class="contact-card">
-+          <p class="eyebrow">Contact</p>
-+          <h2>Find Don Marko</h2>
-+          <p>You leave hungry, we consider it an insult.</p>
-+          <ul class="info-list">
-+            <li><strong>Hours:</strong> Daily 11:00 — 23:00</li>
-+            <li><strong>Phone:</strong> +1 (555) 000-1234</li>
-+            <li><strong>Address:</strong> 42 Flavor St, Little Sicily</li>
-+          </ul>
-+        </div>
-+        <div class="contact-card">
-+          <h3>Send a message to the Don</h3>
-+          <form class="form-grid" id="message-form">
-+            <label>Name
-+              <input type="text" id="msg-name" placeholder="Your name">
-+            </label>
-+            <label>Email
-+              <input type="email" id="msg-email" placeholder="you@example.com">
-+            </label>
-+            <label>Message
-+              <textarea id="msg-message" rows="3" placeholder="Tell the Don what you need"></textarea>
-+            </label>
-+            <button type="submit" class="btn btn-primary">Send</button>
-+          </form>
-+        </div>
-+      </div>
-+    </section>
-+  </main>
-+
-+  <footer>
-+    <div class="container">
-+      <div class="logo" style="justify-content:center; margin-bottom:8px;">
-+        <div class="logo-mark" aria-hidden="true">🍕</div>
-+        <div class="logo-text">
-+          <span class="brand">DON MARKO</span>
-+          <span class="subtitle">PIZZA &amp; PASTA</span>
-+        </div>
-+      </div>
-+      <div>© <span id="year"></span> Don Marko Pizza &amp; Pasta. Small Don. Big Flavor.</div>
-+      <div class="socials">
-+        <a href="#">IG</a>
-+        <a href="#">FB</a>
-+        <a href="#">TT</a>
-+      </div>
-+    </div>
-+  </footer>
-+
-+  <script>
-+    // Smooth scroll for anchor links
-+    document.querySelectorAll('a[href^="#"]').forEach(link => {
-+      link.addEventListener('click', e => {
-+        const targetId = link.getAttribute('href').substring(1);
-+        const target = document.getElementById(targetId);
-+        if (target) {
-+          e.preventDefault();
-+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-+          mobileMenu.classList.remove('show');
-+        }
-+      });
-+    });
-+
-+    // Burger toggle
-+    const burger = document.querySelector('.burger');
-+    const mobileMenu = document.querySelector('.mobile-menu');
-+    burger.addEventListener('click', () => mobileMenu.classList.toggle('show'));
-+
-+    // Tabs switching
-+    const tabs = document.querySelectorAll('.tab');
-+    tabs.forEach(tab => {
-+      tab.addEventListener('click', () => {
-+        tabs.forEach(t => {
-+          t.classList.remove('active');
-+          t.setAttribute('aria-selected', 'false');
-+        });
-+        tab.classList.add('active');
-+        tab.setAttribute('aria-selected', 'true');
-+        const tabId = tab.dataset.tab;
-+        document.querySelectorAll('[role="tabpanel"]').forEach(panel => {
-+          panel.hidden = panel.id !== tabId;
-+        });
-+      });
-+    });
-+
-+    // Cart logic
-+    const cartEl = document.getElementById('cart');
-+    const emptyCartEl = document.getElementById('empty-cart');
-+    const totalEl = document.getElementById('total');
-+    const cart = {};
-+
-+    function renderCart() {
-+      cartEl.innerHTML = '';
-+      const entries = Object.values(cart);
-+      if (!entries.length) {
-+        emptyCartEl.style.display = 'block';
-+        totalEl.textContent = '$0';
-+        return;
-+      }
-+      emptyCartEl.style.display = 'none';
-+      let total = 0;
-+      entries.forEach(item => {
-+        total += item.price * item.qty;
-+        const row = document.createElement('div');
-+        row.className = 'cart-row';
-+        row.innerHTML = `
-+          <div>
-+            <strong>${item.name}</strong><br>
-+            <small>$${item.price.toFixed(2)} each</small>
-+          </div>
-+          <div class="qty-controls" aria-label="Quantity controls">
-+            <button class="qty-btn" data-action="minus" data-name="${item.name}" aria-label="Decrease quantity">-</button>
-+            <span>${item.qty}</span>
-+            <button class="qty-btn" data-action="plus" data-name="${item.name}" aria-label="Increase quantity">+</button>
-+          </div>`;
-+        cartEl.appendChild(row);
-+      });
-+      totalEl.textContent = `$${total.toFixed(2)}`;
-+    }
-+
-+    function addToCart(name, price) {
-+      if (!cart[name]) {
-+        cart[name] = { name, price: Number(price), qty: 0 };
-+      }
-+      cart[name].qty += 1;
-+      renderCart();
-+    }
-+
-+    document.querySelectorAll('.add-btn').forEach(btn => {
-+      btn.addEventListener('click', () => {
-+        const parent = btn.closest('.menu-item');
-+        addToCart(parent.dataset.name, parent.dataset.price);
-+      });
-+    });
-+
-+    cartEl.addEventListener('click', e => {
-+      const btn = e.target.closest('.qty-btn');
-+      if (!btn) return;
-+      const action = btn.dataset.action;
-+      const name = btn.dataset.name;
-+      if (!cart[name]) return;
-+      if (action === 'plus') cart[name].qty += 1;
-+      if (action === 'minus') cart[name].qty = Math.max(0, cart[name].qty - 1);
-+      if (cart[name].qty === 0) delete cart[name];
-+      renderCart();
-+    });
-+
-+    const orderForm = document.getElementById('order-form');
-+    orderForm.addEventListener('submit', e => {
-+      e.preventDefault();
-+      const hasItems = Object.keys(cart).length > 0;
-+      const name = document.getElementById('order-name').value.trim();
-+      const phone = document.getElementById('order-phone').value.trim();
-+      const address = document.getElementById('order-address').value.trim();
-+
-+      if (!hasItems) {
-+        alert('Add at least one item to your order.');
-+        return;
-+      }
-+      if (!name || !phone || !address) {
-+        alert('Please fill in your name, phone, and address.');
-+        return;
-+      }
-+      alert('Thank you! Don Marko has received your order.');
-+      orderForm.reset();
-+      Object.keys(cart).forEach(key => delete cart[key]);
-+      renderCart();
-+    });
-+
-+    document.getElementById('message-form').addEventListener('submit', e => {
-+      e.preventDefault();
-+      alert('The Don has received your message.');
-+      e.target.reset();
-+    });
-+
-+    document.getElementById('year').textContent = new Date().getFullYear();
-+  </script>
-+</body>
-+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DON MARKO PIZZA & PASTA</title>
+  <style>
+    :root {
+      --dark: #171A1C;
+      --red: #C7362C;
+      --cream: #F4E3C3;
+      --olive: #7B8C3A;
+      --text: #1f2428;
+      --muted: #57606a;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: #f7f1e6;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1200px, 92vw);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--dark);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: var(--red);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      box-shadow: 0 6px 12px rgba(199, 54, 44, 0.4);
+    }
+
+    .logo-text span { display: block; }
+    .logo-text .brand { font-size: 18px; }
+    .logo-text .subtitle { font-size: 12px; color: #d5d8da; letter-spacing: 0.08em; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    nav a:hover { background: rgba(244, 227, 195, 0.1); transform: translateY(-1px); }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .burger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #fff;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px 0 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 40%, #21262a 100%);
+      color: #fff;
+      padding: 96px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      font-size: 12px;
+      color: #f5d7a1;
+      margin-bottom: 10px;
+    }
+
+    h1 { font-size: clamp(28px, 6vw, 44px); margin: 0 0 12px; }
+    h2 { font-size: clamp(24px, 5vw, 34px); margin: 0 0 12px; color: var(--dark); }
+    h3 { margin: 0 0 8px; font-size: 20px; }
+
+    .hero p { margin: 0 0 18px; color: #e9edf0; }
+
+    .cta-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+    }
+
+    .btn-primary { background: var(--red); color: #fff; box-shadow: 0 10px 18px rgba(199, 54, 44, 0.3); }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-ghost { background: rgba(244, 227, 195, 0.12); color: #fff; border: 1px solid rgba(255,255,255,0.25); }
+    .btn-ghost:hover { background: rgba(244, 227, 195, 0.2); }
+
+    .hero-visual {
+      background: #f4e3c3;
+      color: var(--dark);
+      border-radius: 18px;
+      padding: 32px;
+      min-height: 220px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      border: 2px dashed #d9c29f;
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(23, 26, 28, 0.06);
+    }
+
+    .quote-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .badge {
+      background: #fff;
+      color: var(--dark);
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(23, 26, 28, 0.08);
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .section-title { text-align: center; margin-bottom: 36px; }
+    .section-title p { margin: 0 auto; max-width: 640px; color: var(--muted); }
+
+    .laws {
+      background: var(--dark);
+      color: #f6f7f8;
+      padding: 28px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .laws ol { margin: 0; padding-left: 22px; display: grid; gap: 12px; }
+    .laws small { color: #dce0e2; display: block; margin-top: 12px; }
+
+    .tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 18px; flex-wrap: wrap; }
+
+    .tab {
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(23,26,28,0.12);
+      background: #fff7eb;
+      color: var(--dark);
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+
+    .tab.active {
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 12px 20px rgba(199, 54, 44, 0.32);
+      transform: translateY(-1px);
+    }
+
+    .menu-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .menu-item {
+      background: #fff;
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid rgba(23,26,28,0.08);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+      display: grid;
+      gap: 8px;
+    }
+
+    .menu-meta { display: flex; gap: 10px; flex-wrap: wrap; }
+    .pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(123, 140, 58, 0.15);
+      color: var(--olive);
+    }
+    .pill.spicy { background: rgba(199, 54, 44, 0.16); color: var(--red); }
+    .pill.star { background: rgba(255, 200, 87, 0.22); color: #b36b00; }
+    .pill.premium { background: rgba(109, 90, 237, 0.18); color: #5145cd; }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .add-btn {
+      background: var(--dark);
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .add-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 16px rgba(23, 26, 28, 0.2); }
+
+    .split {
+      display: grid;
+      gap: 22px;
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .list-check { padding-left: 18px; color: var(--muted); }
+    .list-check li { margin-bottom: 8px; }
+
+    .order-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(23,26,28,0.08);
+      display: grid;
+      gap: 12px;
+    }
+
+    .cart-items { display: grid; gap: 10px; }
+    .cart-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; }
+    .qty-controls { display: inline-flex; align-items: center; gap: 8px; }
+    .qty-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      border: 1px solid rgba(23,26,28,0.12);
+      background: #f2e5cc;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .form-grid { display: grid; gap: 10px; }
+    label { display: grid; gap: 6px; font-weight: 600; color: var(--dark); }
+    input, textarea {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(23,26,28,0.14);
+      font-size: 14px;
+      background: #fff;
+      font-family: inherit;
+    }
+    textarea { resize: vertical; }
+
+    .total-row { display: flex; align-items: center; justify-content: space-between; font-weight: 800; }
+
+    .testimonials {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .contact-card { background: #fff; border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); border: 1px solid rgba(23,26,28,0.08); display: grid; gap: 12px; }
+    .info-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; color: var(--muted); }
+
+    footer {
+      background: var(--dark);
+      color: #e6eaed;
+      padding: 24px 0;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .socials { display: flex; justify-content: center; gap: 12px; margin-top: 8px; }
+    .socials a { color: #e6eaed; font-weight: 700; }
+    .map-embed { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); border: 2px solid #d9c29f; }
+    .map-embed iframe { width: 100%; height: 260px; border: 0; display: block; }
+
+    @media (min-width: 720px) {
+      .nav-bar { padding: 16px 0; }
+      .hero-grid { grid-template-columns: 1.2fr 0.9fr; }
+      .card-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+      .menu-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+      .split { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+      .contact-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+      nav a { font-size: 15px; }
+      .mobile-menu { display: none !important; }
+      .burger { display: none; }
+    }
+
+    @media (max-width: 719px) {
+      nav ul { display: none; }
+      .burger { display: flex; }
+      .mobile-menu.show { display: flex; }
+      header { backdrop-filter: blur(6px); }
+      .hero { padding: 84px 0 64px; }
+      .section { padding: 64px 0; }
+      .price-row { align-items: start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-bar">
+      <div class="logo" aria-label="Don Marko logo">
+        <div class="logo-mark" aria-hidden="true">🍕</div>
+        <div class="logo-text">
+          <span class="brand">DON MARKO</span>
+          <span class="subtitle">PIZZA &amp; PASTA</span>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#code">The Don’s Code</a></li>
+          <li><a href="#delivery">Delivery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="burger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="mobile-menu" aria-label="Mobile navigation">
+          <a href="#home">Home</a>
+          <a href="#menu">Menu</a>
+          <a href="#code">The Don’s Code</a>
+          <a href="#delivery">Delivery</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Small Don. Big Flavor.</p>
+          <h1>DON MARKO PIZZA &amp; PASTA</h1>
+          <p>Hungry? The Don will take care of it. Authentic pizza &amp; pasta with a playful mafia twist.</p>
+          <div class="cta-buttons">
+            <a class="btn btn-primary" href="#delivery">Order Delivery</a>
+            <a class="btn btn-ghost" href="#menu">View Menu</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Illustration placeholder">
+          Illustration of Don Marko goes here. Small boss, big flavor energy.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="meet">
+      <div class="container card-grid">
+        <div class="card">
+          <div class="eyebrow">Meet the Don</div>
+          <h2>Don Marko is the boss of flavor</h2>
+          <p>Don Marko is the boss of flavor. He “takes care of” dough, cheese and sauce: everything is under his control, no compromises on quality. He may be small, but when it comes to pizza and pasta, he makes all the big decisions.</p>
+          <p>He runs the kitchen like family business: respectful, sharp, and always on time. Sit down, relax, and let the Don handle your hunger.</p>
+          <div class="quote-badges">
+            <span class="badge">“I already handled the dough. Don’t make me handle you.”</span>
+            <span class="badge">“I knead dough… and I can knead you too.”</span>
+            <span class="badge">“No drama at the table. I only like spicy on my pizza.”</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="code">
+      <div class="container">
+        <div class="section-title">
+          <p class="eyebrow">The Don’s Code</p>
+          <h2>The Don’s Laws of Flavor</h2>
+          <p>These are the rules of Don Marko’s family. Break them at your own risk (or just order another pizza).</p>
+        </div>
+        <div class="laws">
+          <ol>
+            <li>In this house, we count slices, not calories.</li>
+            <li>If it’s not good enough for the Don, it’s not leaving the kitchen.</li>
+            <li>No shortcuts. Long dough, long respect.</li>
+            <li>Bad mood? Add another slice.</li>
+            <li>You’re under my protection. No one touches your pizza.</li>
+            <li>We don’t negotiate with fake cheese.</li>
+            <li>Wash your hands. The Don is watching.</li>
+            <li>Loyalty is measured in empty plates.</li>
+          </ol>
+          <small>Obey the code and the Don will make sure your plate stays full.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="menu">
+      <div class="container">
+        <div class="section-title">
+          <p class="eyebrow">Menu</p>
+          <h2 id="menu-title">Pizza you can’t refuse</h2>
+          <p id="menu-description">Hand-tossed pies, playful mafia names, and ingredients the Don approves.</p>
+        </div>
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-tab="pizza" aria-selected="true" data-title="Pizza you can’t refuse" data-description="Hand-tossed pies, playful mafia names, and ingredients the Don approves.">Pizza</button>
+          <button class="tab" data-tab="pasta" aria-selected="false" data-title="Pasta with family respect" data-description="Slow-simmered sauces and pasta dishes signed by the Don himself.">Pasta</button>
+        </div>
+        <div class="menu-grid" id="pizza" role="tabpanel">
+          <div class="menu-item" data-name="Capo Margherita" data-price="11">
+            <h3>Capo Margherita</h3>
+            <p>Classic margherita with San Marzano tomatoes, fresh mozzarella &amp; basil.</p>
+            <div class="menu-meta">
+              <span class="pill star">bestseller</span>
+            </div>
+            <div class="price-row">
+              <strong>$11</strong>
+              <button class="add-btn">Add to Order</button>
+            </div>
+          </div>
+          <div class="menu-item" data-name="Undercover Pepperoni" data-price="13">
+            <h3>Undercover Pepperoni</h3>
+            <p>Double pepperoni, mozzarella, secret Don’s sauce.</p>
+            <div class="menu-meta">
+              <span class="pill spicy">spicy</span>
+            </div>
+            <div class="price-row">
+              <strong>$13</strong>
+              <button class="add-btn">Add to Order</button>
+            </div>
+          </div>
+          <div class="menu-item" data-name="Witness Protection White Pizza" data-price="12">
+            <h3>Witness Protection White Pizza</h3>
+            <p>Creamy ricotta, mozzarella, garlic, mushrooms.</p>
+            <div class="menu-meta">
+              <span class="pill">vegetarian</span>
+            </div>
+            <div class="price-row">
+              <strong>$12</strong>
+              <button class="add-btn">Add to Order</button>
+            </div>
+          </div>
+          <div class="menu-item" data-name="Tiny Don Special" data-price="14">
+            <h3>Tiny Don Special</h3>
+            <p>Mix of premium toppings chosen by the Don (pepperoni, sausage, peppers, onions).</p>
+            <div class="menu-meta"></div>
+            <div class="price-row">
+              <strong>$14</strong>
+              <button class="add-btn">Add to Order</button>
+            </div>
+          </div>
+          <div class="menu-item" data-name="Family Loyalty Four Cheese" data-price="13">
+            <h3>Family Loyalty Four Cheese</h3>
+            <p>Mozzarella, gorgonzola, parmesan, provolone.</p>
+            <div class="menu-meta"></div>
+            <div class="price-row">
+              <strong>$13</strong>
+              <button class="add-btn">Add to Order</button>
+            </div>
+          </div>
+          <div class="menu-item" data-name="Midnight Meeting Diavola" data-price="15">
+            <h3>Midnight Meeting Diavola</h3>
+            <p>Spicy salami, chili flakes, jalapeños.</p>
+            <div class="menu-meta">
+              <span class="pill spicy">extra spicy</span>
+            </div>
+            <div class="price-row">
+              <strong>$15</strong>
+              <button class="add-btn">Add to Order</button>
+            </div>
+          </div>
+        </div>
+        <div class="menu-grid" id="pasta" role="tabpanel" hidden>
+          <div class="menu-item" data-name="Spaghetti alla Tommy Gun" data-price="12">
+            <h3>Spaghetti alla Tommy Gun</h3>
+            <p>Spaghetti with rich tomato sauce &amp; meatballs.</p>
+            <div class="menu-meta"></div>
+            <div class="price-row">
+              <strong>$12</strong>
+              <button class="add-btn">Add to Order</button>
+            </div>
+          </div>
+          <div class="menu-item" data-name="Boss’ Favorite Carbonara" data-price="13">
+            <h3>Boss’ Favorite Carbonara</h3>
+            <p>Creamy sauce, pancetta, egg, pecorino.</p>
+            <div class="menu-meta"></div>
+            <div class="price-row">
+              <strong>$13</strong>
+              <button class="add-btn">Add to Order</button>
+            </div>
+          </div>
+          <div class="menu-item" data-name="Truffle Peace Agreement" data-price="16">
+            <h3>Truffle Peace Agreement</h3>
+            <p>Fettuccine with truffle cream sauce.</p>
+            <div class="menu-meta">
+              <span class="pill premium">premium</span>
+            </div>
+            <div class="price-row">
+              <strong>$16</strong>
+              <button class="add-btn">Add to Order</button>
+            </div>
+          </div>
+          <div class="menu-item" data-name="Green Capo Pesto" data-price="12">
+            <h3>Green Capo Pesto</h3>
+            <p>Basil pesto, cherry tomatoes, parmesan.</p>
+            <div class="menu-meta">
+              <span class="pill">vegetarian</span>
+            </div>
+            <div class="price-row">
+              <strong>$12</strong>
+              <button class="add-btn">Add to Order</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="delivery">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">Delivery</p>
+          <h2>Delivery under Don’s protection</h2>
+          <p>Order your pizza &amp; pasta straight from Don Marko’s kitchen. We deliver fast, hot, and with respect for your hunger.</p>
+          <ul class="list-check">
+            <li>Fresh dough, real cheese, honest ingredients.</li>
+            <li>No frozen nonsense. Not in this family.</li>
+            <li>Friendly couriers, no drama.</li>
+          </ul>
+        </div>
+        <div class="order-card">
+          <h3>Your Order</h3>
+          <div class="cart-items" id="cart"></div>
+          <p id="empty-cart">No items yet. Add something the Don approves.</p>
+          <div class="total-row">
+            <span>Total</span>
+            <span id="total">$0</span>
+          </div>
+          <form class="form-grid" id="order-form">
+            <label>Name
+              <input type="text" id="order-name" placeholder="Your name">
+            </label>
+            <label>Phone
+              <input type="tel" id="order-phone" placeholder="+1 (___) ___-____">
+            </label>
+            <label>Address
+              <input type="text" id="order-address" placeholder="Street, building, apartment">
+            </label>
+            <label>Delivery notes
+              <textarea id="order-notes" rows="3" placeholder="Gate code or sauce preference"></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary">Place Order</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-title">
+          <p class="eyebrow">What the family says</p>
+          <h2>Voices from Don Marko’s table</h2>
+        </div>
+        <div class="testimonials">
+          <div class="card">
+            <p>“Best crust in town. I’m afraid to order pizza anywhere else now.”</p>
+            <strong>— Tony</strong>
+          </div>
+          <div class="card">
+            <p>“My kids love the tiny Don character. We come every Friday.”</p>
+            <strong>— Maria</strong>
+          </div>
+          <div class="card">
+            <p>“Serious flavor, fun atmosphere. The Don knows what he’s doing.”</p>
+            <strong>— Alex</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-card">
+          <p class="eyebrow">Contact</p>
+          <h2>Find Don Marko</h2>
+          <p>You leave hungry, we consider it an insult.</p>
+          <ul class="info-list">
+            <li><strong>Hours:</strong> Daily 11:00 — 23:00</li>
+            <li><strong>Phone:</strong> +1 (555) 000-1234</li>
+            <li><strong>Address:</strong> 42 Flavor St, Little Sicily</li>
+          </ul>
+        </div>
+        <div class="contact-card">
+          <h3>Send a message to the Don</h3>
+          <form class="form-grid" id="message-form">
+            <label>Name
+              <input type="text" id="msg-name" placeholder="Your name">
+            </label>
+            <label>Email
+              <input type="email" id="msg-email" placeholder="you@example.com">
+            </label>
+            <label>Message
+              <textarea id="msg-message" rows="3" placeholder="Tell the Don what you need"></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary">Send</button>
+          </form>
+        </div>
+        <div class="contact-card">
+          <h3>Мы на карте</h3>
+          <p>42 Flavor St, Little Sicily — заходите за пиццей и пастой.</p>
+          <div class="map-embed" aria-label="Google Map with Don Marko location">
+            <iframe src="https://www.google.com/maps?q=42+Flavor+St,+Little+Sicily&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="logo" style="justify-content:center; margin-bottom:8px;">
+        <div class="logo-mark" aria-hidden="true">🍕</div>
+        <div class="logo-text">
+          <span class="brand">DON MARKO</span>
+          <span class="subtitle">PIZZA &amp; PASTA</span>
+        </div>
+      </div>
+      <div>© <span id="year"></span> Don Marko Pizza &amp; Pasta. Small Don. Big Flavor.</div>
+      <div class="socials">
+        <a href="#">IG</a>
+        <a href="#">FB</a>
+        <a href="#">TT</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const targetId = link.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          mobileMenu.classList.remove('show');
+        }
+      });
+    });
+
+    // Burger toggle
+    const burger = document.querySelector('.burger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    burger.addEventListener('click', () => mobileMenu.classList.toggle('show'));
+
+    // Tabs switching
+    const tabs = document.querySelectorAll('.tab');
+    const menuTitle = document.getElementById('menu-title');
+    const menuDescription = document.getElementById('menu-description');
+
+    function updateMenuCopy(tab) {
+      if (!tab) return;
+      if (tab.dataset.title) menuTitle.textContent = tab.dataset.title;
+      if (tab.dataset.description) menuDescription.textContent = tab.dataset.description;
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        const tabId = tab.dataset.tab;
+        document.querySelectorAll('[role="tabpanel"]').forEach(panel => {
+          panel.hidden = panel.id !== tabId;
+        });
+        updateMenuCopy(tab);
+      });
+    });
+
+    updateMenuCopy(document.querySelector('.tab.active'));
+
+    // Cart logic
+    const cartEl = document.getElementById('cart');
+    const emptyCartEl = document.getElementById('empty-cart');
+    const totalEl = document.getElementById('total');
+    const cart = {};
+
+    function renderCart() {
+      cartEl.innerHTML = '';
+      const entries = Object.values(cart);
+      if (!entries.length) {
+        emptyCartEl.style.display = 'block';
+        totalEl.textContent = '$0';
+        return;
+      }
+      emptyCartEl.style.display = 'none';
+      let total = 0;
+      entries.forEach(item => {
+        total += item.price * item.qty;
+        const row = document.createElement('div');
+        row.className = 'cart-row';
+        row.innerHTML = `
+          <div>
+            <strong>${item.name}</strong><br>
+            <small>$${item.price.toFixed(2)} each</small>
+          </div>
+          <div class="qty-controls" aria-label="Quantity controls">
+            <button class="qty-btn" data-action="minus" data-name="${item.name}" aria-label="Decrease quantity">-</button>
+            <span>${item.qty}</span>
+            <button class="qty-btn" data-action="plus" data-name="${item.name}" aria-label="Increase quantity">+</button>
+          </div>`;
+        cartEl.appendChild(row);
+      });
+      totalEl.textContent = `$${total.toFixed(2)}`;
+    }
+
+    function addToCart(name, price) {
+      if (!cart[name]) {
+        cart[name] = { name, price: Number(price), qty: 0 };
+      }
+      cart[name].qty += 1;
+      renderCart();
+    }
+
+    document.querySelectorAll('.add-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parent = btn.closest('.menu-item');
+        addToCart(parent.dataset.name, parent.dataset.price);
+      });
+    });
+
+    cartEl.addEventListener('click', e => {
+      const btn = e.target.closest('.qty-btn');
+      if (!btn) return;
+      const action = btn.dataset.action;
+      const name = btn.dataset.name;
+      if (!cart[name]) return;
+      if (action === 'plus') cart[name].qty += 1;
+      if (action === 'minus') cart[name].qty = Math.max(0, cart[name].qty - 1);
+      if (cart[name].qty === 0) delete cart[name];
+      renderCart();
+    });
+
+    const orderForm = document.getElementById('order-form');
+    orderForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const hasItems = Object.keys(cart).length > 0;
+      const name = document.getElementById('order-name').value.trim();
+      const phone = document.getElementById('order-phone').value.trim();
+      const address = document.getElementById('order-address').value.trim();
+
+      if (!hasItems) {
+        alert('Add at least one item to your order.');
+        return;
+      }
+      if (!name || !phone || !address) {
+        alert('Please fill in your name, phone, and address.');
+        return;
+      }
+      alert('Thank you! Don Marko has received your order.');
+      orderForm.reset();
+      Object.keys(cart).forEach(key => delete cart[key]);
+      renderCart();
+    });
+
+    document.getElementById('message-form').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('The Don has received your message.');
+      e.target.reset();
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
